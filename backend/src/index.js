@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
     cors({
-      origin: "http://localhost:5174",
+      origin: "http://localhost:5173",
       credentials: true,
     })
   );
@@ -34,5 +34,5 @@ app.use("/api/v1/submission", submissionRoutes);
 app.use("/api/v1/playlist", playlistRoutes);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 8081");
+  console.log("Server is running on port 8080");
 });
