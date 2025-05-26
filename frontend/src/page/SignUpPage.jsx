@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
 import { Link } from 'react-router-dom'
@@ -10,10 +10,10 @@ import {
   Lock,
   Mail,
 } from "lucide-react";
-
 import {z} from "zod";
 import AuthImagePattern from '../components/AuthImagePattern';
-import { useAuthStore } from "../store/useAuthStore";
+import { useAuthStore } from '../store/useAuthStore';
+
 
 const SignUpSchema = z.object({
   email:z.string().email("Enter a valid email"),
@@ -22,10 +22,9 @@ const SignUpSchema = z.object({
 })
 
 const SignUpPage = () => {
+    const [showPassword , setShowPassword] = useState(false);
 
-  const [showPassword , setShowPassword] = useState(false);
-
-  const {signup , isSigninUp} = useAuthStore()
+   const {signup , isSigninUp} = useAuthStore()
 
   const {
     register,
@@ -36,13 +35,18 @@ const SignUpPage = () => {
   })
 
   const onSubmit = async (data)=>{
-   try {
+    
+       try {
     await signup(data)
     console.log("signup data" , data)
    } catch (error) {
      console.error("SignUp failed:", error);
    }
   }
+
+ 
+
+
 
 
   return (
@@ -147,9 +151,9 @@ const SignUpPage = () => {
             <button
               type="submit"
               className="btn btn-primary w-full"
-             disabled={isSigninUp}
+            //  disabled={isSigninUp}
             >
-               {isSigninUp ? (
+          {isSigninUp ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
                   Loading...
@@ -157,6 +161,7 @@ const SignUpPage = () => {
               ) : (
                 "Sign in"
               )}
+
             </button>
           </form>
 
